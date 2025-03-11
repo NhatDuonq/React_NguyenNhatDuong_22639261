@@ -1,65 +1,74 @@
-function Footer() {
-    return (
-      <footer className="bg-dark text-white py-5" style={{ minWidth: '1200px' }}>
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-4 col-md-6 mb-4">
-              <h5>About Us</h5>
-              <p>Welcome to our website, a wonderful place to explore and learn how to cook like a pro.</p>
-              <div className="input-group">
-                <input type="email" className="form-control" placeholder="Enter your email" />
-                <button className="btn btn-pink">Send</button>
-              </div>
-            </div>
-  
-            <div className="col-lg-2 col-md-3 mb-4">
-              <h5>Learn More</h5>
-              <ul className="list-unstyled">
-                <li><a href="#">Our Cooks</a></li>
-                <li><a href="#">See Our Features</a></li>
-                <li><a href="#">FAQ</a></li>
-              </ul>
-            </div>
-  
-            <div className="col-lg-2 col-md-3 mb-4">
-              <h5>Shop</h5>
-              <ul className="list-unstyled">
-                <li><a href="#">Gift Subscription</a></li>
-                <li><a href="#">Send Us Feedback</a></li>
-              </ul>
-            </div>
-  
-            <div className="col-lg-4 col-md-6 mb-4">
-              <h5>Recipes</h5>
-              <ul className="list-unstyled">
-                <li><a href="#">What to Cook This Week</a></li>
-                <li><a href="#">Pasta</a></li>
-                <li><a href="#">Dinner</a></li>
-                <li><a href="#">Healthy</a></li>
-                <li><a href="#">Vegetarian</a></li>
-                <li><a href="#">Vegan</a></li>
-                <li><a href="#">Christmas</a></li>
-              </ul>
-            </div>
-          </div>
-  
-          <div className="d-flex justify-content-between align-items-center mt-4">
-            <div className="d-flex align-items-center">
-              <img
-               // src="/img/Screenshot 2025-02-26 161332.png"
-                alt="Chefify Logo"
-                style={{ width: '40px', height: '40px' }}
-              />
-              <span className="ms-2 fw-bold">Chefify</span>
-            </div>
-            <p className="mb-0">2023 Chefify Company</p>
-            <p className="mb-0">
-              <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a>
-            </p>
+import '../styles/Footer.css'; // Assuming you'll create a corresponding CSS file
+
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        {/* About Section */}
+        <div className="footer-section about-section">
+          <h5 className="footer-title">About Us</h5>
+          <p className="footer-text">
+            Welcome to Chefify, your go-to place to explore and master culinary arts.
+          </p>
+          <div className="newsletter">
+            <input 
+              type="email" 
+              className="newsletter-input" 
+              placeholder="Enter your email" 
+            />
+            <button className="newsletter-btn">Subscribe</button>
           </div>
         </div>
-      </footer>
-    );
-  }
-  
-  export default Footer;
+
+        {/* Navigation Sections */}
+        <div className="footer-section nav-section">
+          <h5 className="footer-title">Learn More</h5>
+          <nav className="footer-links">
+            <a href="#" className="footer-link">Our Cooks</a>
+            <a href="#" className="footer-link">Features</a>
+            <a href="#" className="footer-link">FAQ</a>
+          </nav>
+        </div>
+
+        <div className="footer-section nav-section">
+          <h5 className="footer-title">Shop</h5>
+          <nav className="footer-links">
+            <a href="#" className="footer-link">Gift Subscription</a>
+            <a href="#" className="footer-link">Send Feedback</a>
+          </nav>
+        </div>
+
+        <div className="footer-section recipe-section">
+          <h5 className="footer-title">Recipes</h5>
+          <nav className="footer-links">
+            <a href="#" className="footer-link">What to Cook</a>
+            <a href="#" className="footer-link">Pasta</a>
+            <a href="#" className="footer-link">Dinner</a>
+            <a href="#" className="footer-link">Healthy</a>
+            <a href="#" className="footer-link">Vegetarian</a>
+            <a href="#" className="footer-link">Vegan</a>
+            <a href="#" className="footer-link">Occasions</a>
+          </nav>
+        </div>
+      </div>
+
+      {/* Bottom Bar */}
+      <div className="footer-bottom">
+        <div className="logo">
+          <img 
+            src="../img/Screenshot 2025-02-26 155851.png" 
+            alt="Chefify Logo" 
+            className="logo-img" 
+          />
+          <span className="logo-text">Chefify</span>
+        </div>
+        <span className="copyright">© 2025 Chefify Company</span>
+        <div className="legal-links">
+          <a href="#" className="legal-link">Terms of Service</a>
+          <span> | </span>
+          <a href="#" className="legal-link">Privacy Policy</a>
+        </div>
+      </div>
+    </footer>
+  );
+}

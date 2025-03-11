@@ -3,6 +3,7 @@ import './App.css';
 
 import Item from '../components/Item';
 import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
           </li>
         ))}
       </ul>
+      <Footer/>
     </div>
   );
 }
