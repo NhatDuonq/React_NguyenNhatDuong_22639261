@@ -1,0 +1,23 @@
+/* Navbar.css */
+/* Note: You might need to adjust these styles based on your Bootstrap setup */
+.navbar {
+    /* Add any custom navbar styles */
+  }
+  
+  .profile-img {
+    /* Add your image styling */
+    margin-left: 1rem; /* matches ms-3 */
+  }
+  
+  .search-box {
+    /* Add search box styling */
+  }
+  
+  .recipe-box {
+    /* Add recipe box button styling */
+  }
+  
+  /* Ensure Bootstrap icons are properly imported in your project */
+  .bi-search::before {
+    content: "\f002"; /* Bootstrap Icons search symbol */
+  }
