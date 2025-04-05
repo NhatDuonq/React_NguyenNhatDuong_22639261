@@ -11,7 +11,7 @@ export default function MenuBar() {
             <div
               className={`h-10 w-full rounded-lg flex items-center mb-6 ${
                 isActive ? "bg-pink-500" : "bg-white"
-              }`} // Thêm mb-6 để tạo khoảng cách
+              }`}
             >
               <img src="/img/Squares four 1.png" alt="" className="ml-5" />
               <span
