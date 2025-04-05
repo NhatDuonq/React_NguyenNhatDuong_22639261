@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../App.css";
 import OverviewCard from "../components/OverviewCard";
+import DataTable from "../components/DataTable";
 
 export default function AdminPage() {
   const [data, setData] = useState([]);
@@ -38,37 +39,7 @@ export default function AdminPage() {
           <div>
             <h2 class="text-lg font-semibold">Detail report</h2>
           </div>
-
-          <table className="border-1  w-full text-center">
-            <tr>
-              <th className="border-1">Column 1</th>
-              <th className="border-1">Column 2</th>
-              <th className="border-1">Column 3</th>
-              <th className="border-1">Column 4</th>
-              <th className="border-1">Column 5</th>
-            </tr>
-            <tr>
-              <td className="border-1">Row 1, Col 1</td>
-              <td className="border-1">Row 1, Col 2</td>
-              <td className="border-1">Row 1, Col 3</td>
-              <td className="border-1">Row 1, Col 4</td>
-              <td className="border-1">Row 1, Col 5</td>
-            </tr>
-            <tr>
-              <td className="border-1">Row 2, Col 1</td>
-              <td className="border-1">Row 2, Col 2</td>
-              <td className="border-1">Row 2, Col 3</td>
-              <td className="border-1">Row 2, Col 4</td>
-              <td className="border-1">Row 2, Col 5</td>
-            </tr>
-            <tr>
-              <td className="border-1">Row 3, Col 1</td>
-              <td className="border-1">Row 3, Col 2</td>
-              <td className="border-1">Row 3, Col 3</td>
-              <td className="border-1">Row 3, Col 4</td>
-              <td className="border-1">Row 3, Col 5</td>
-            </tr>
-          </table>
+          <DataTable />
         </div>
       </div>
     </>
