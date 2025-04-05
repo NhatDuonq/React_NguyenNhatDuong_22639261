@@ -1,138 +1,59 @@
 import React from "react";
 
-export default function DataTable() {
+export default function DataTable({ dataTable }) {
   return (
     <>
-      <table className="table-auto w-full border-collapse border border-gray-200 m-2">
-        <thead>
-          <tr>
-            <th className="py-6">
-              <input type="checkbox" name="" id="" />
-            </th>
-            <th className="py-6">Customer Name</th>
-            <th className="py-6">Company</th>
-            <th className="py-6">Order Value</th>
-            <th className="py-6">Order Date</th>
-            <th className="py-6">Status</th>
-            <th className="py-6"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td className="py-6">
-              <input type="checkbox" name="" id="" />
-            </td>
-            <td className="py-6 flex items-center">
-              <img src="/img/Avatar (1).png" alt="" className="pr-10" />
-              Elizabeth Lee
-            </td>
-            <td className="py-6">AvatarSystem</td>
-            <td className="py-6">$359</td>
-            <td className="py-6">10/07/2023</td>
-            <td className="py-6">
-              <span className="status status-new">New</span>
-            </td>
-            <td className="py-6">
-              <img src="/img/create.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td className="py-6">
-              <input type="checkbox" name="" id="" />
-            </td>
-            <td className="py-6 flex items-center">
-              <img src="/img/Avatar (2).png" alt="" className="pr-10" />
-              Carlos Garcia
-            </td>
-            <td className="py-6">SnoozeShift</td>
-            <td className="py-6">$747</td>
-            <td className="py-6">24/07/2023</td>
-            <td className="py-6">
-              <span className="status status-new">New</span>
-            </td>
-            <td className="py-6">
-              {" "}
-              <img src="/img/create.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td className="py-6">
-              <input type="checkbox" name="" id="" />
-            </td>
-            <td className="py-6 flex items-center">
-              <img src="/img/Avatar (3).png" alt="" className="pr-10" />
-              Elizabeth Bailey
-            </td>
-            <td className="py-6">PrimeTime Telecom</td>
-            <td className="py-6">$564</td>
-            <td className="py-6">08/08/2023</td>
-            <td className="py-6">
-              <span className="status status-in-progress">In-progress</span>
-            </td>
-            <td className="py-6">
-              {" "}
-              <img src="/img/create.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td className="py-6">
-              <input type="checkbox" name="" id="" />
-            </td>
-            <td className="py-4 flex items-center">
-              <img src="/img/Avatar (4).png" alt="" className="pr-10" />
-              Ryan Brown
-            </td>
-            <td className="py-6">OmniTech Corporation</td>
-            <td className="py-6">$541</td>
-            <td className="py-6">31/08/2023</td>
-            <td className="py-6">
-              <span className="status status-in-progress">In-progress</span>
-            </td>
-            <td className="py-6">
-              {" "}
-              <img src="/img/create.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td className="py-6">
-              <input type="checkbox" name="" id="" />
-            </td>
-            <td className="py-4 flex items-center">
-              <img src="/img/Avatar (5).png" alt="" className="pr-10" />
-              Ryan Young
-            </td>
-            <td className="py-6">DataStream Inc.</td>
-            <td className="py-6">$769</td>
-            <td className="py-6">01/05/2023</td>
-            <td className="py-6">
-              <span className="status status-completed">Completed</span>
-            </td>
-            <td className="py-6">
-              {" "}
-              <img src="/img/create.png" alt="" />
-            </td>
-          </tr>
-          <tr>
-            <td className="py-6">
-              <input type="checkbox" name="" id="" />
-            </td>
-            <td className="py-4 flex items-center">
-              <img src="/img/Avatar (6).png" alt="" className="pr-10" />
-              Hailey Adams
-            </td>
-            <td className="py-6">FlowRush</td>
-            <td className="py-6">$922</td>
-            <td className="py-6">10/06/2023</td>
-            <td className="py-6">
-              <span className="status status-completed">Completed</span>
-            </td>
-            <td className="py-6">
-              {" "}
-              <img src="/img/create.png" alt="" />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <div className="rounded-lg bg-white shadow-md p-5 mt-5">
+        <table className="table-auto w-full border-collapse border border-gray-200">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="py-5">
+                <input type="checkbox" name="" id="" />
+              </th>
+              <th className="py-5">Customer Name</th>
+              <th className="py-5">Company</th>
+              <th className="py-5">Order Value</th>
+              <th className="py-5">Order Date</th>
+              <th className="py-5">Status</th>
+              <th className="py-5"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {dataTable.map((item) => (
+              <tr key={item.id} className="border-b border-gray-200">
+                <td className="py-5">
+                  <input type="checkbox" name="" id="" />
+                </td>
+                <td className="py-5 flex items-center">
+                  <img src={item.img_url} alt="" className="pr-10" />
+                  {item.customer_name}
+                </td>
+                <td className="py-5">{item.company}</td>
+                <td className="py-5">{item.order_vaule}</td>
+                <td className="py-5">{item.order_date}</td>
+                <td className="py-5">
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm ${
+                      item.status === "New"
+                        ? "bg-blue-100 text-blue-600"
+                        : item.status === "In-progress"
+                        ? "bg-yellow-100 text-yellow-600"
+                        : item.status === "Completed"
+                        ? "bg-green-100 text-green-600"
+                        : "bg-gray-100 text-gray-600"
+                    }`}
+                  >
+                    {item.status}
+                  </span>
+                </td>
+                <td className="py-5">
+                  <img src="/img/create.png" alt="" />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 }
