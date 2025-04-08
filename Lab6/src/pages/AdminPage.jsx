@@ -8,6 +8,8 @@ export default function AdminPage() {
   const [data, setData] = useState([]);
   const [dataTable, setDataTable] = useState([]);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5;
 
   const handleAdd = () => {
     setIsAddModalOpen(true);
@@ -33,13 +35,16 @@ export default function AdminPage() {
     );
   }, []);
 
+  const totalPages = Math.ceil(dataTable.length / itemsPerPage);
+  const displayedData = dataTable.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
   return (
     <>
       <div className="flex">
         <div className="flex-1">
-          <div className="bg-blue-100 p-5">
-            <h1 className="text-xl font-bold text-center">My Header</h1>
-          </div>
           <div className="flex ml-5 mt-5 mb-5">
             <img src="/img/Squares four 1.png" alt="" />
             <h2 className="text-xl font-bold ml-3">Overview</h2>
@@ -59,15 +64,45 @@ export default function AdminPage() {
             <div className="flex justify-end items-center mr-5 mt-5">
               <button
                 onClick={handleAdd}
-                className="flex items-center text-pink-500 px-4 py-2 rounded-lg font-semibold text-xl border-2 border-pink-500 hover:bg-pink-500 hover:text-white transition duration-300"
+                className="flex mr-10 items-center text-pink-500 px-4 py-2 rounded-lg font-semibold text-xl border-2 border-pink-500 hover:bg-pink-500 hover:text-white transition duration-300"
               >
                 <img src="/img/add.png" alt="" className="h-5 w-5 mr-2" />
                 Add
               </button>
+              <button className="flex mr-10 items-center text-pink-500 px-4 py-2 rounded-lg font-semibold text-xl border-2 border-pink-500 hover:bg-pink-500 hover:text-white transition duration-300">
+                <img src="/img/Download.png" alt="" className="h-5 w-5 mr-2" />
+                Import
+              </button>
+              <button className="flex items-center text-pink-500 px-4 py-2 rounded-lg font-semibold text-xl border-2 border-pink-500 hover:bg-pink-500 hover:text-white transition duration-300">
+                <img src="/img/Move up.png" alt="" className="h-5 w-5 mr-2" />
+                Export
+              </button>
             </div>
           </div>
 
-          <DataTable dataTables={dataTable} />
+          <DataTable dataTables={displayedData} />
+          <div className="flex grid grid-cols-2 itéms-center justify-between">
+            <span className="text-gray-500 font-medium mt-5">
+              Total Users: {dataTable.length}
+            </span>
+            <div className="flex justify-center mt-4 space-x-2">
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                (page) => (
+                  <button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    className={`px-3 py-1 rounded-md border ${
+                      currentPage === page
+                        ? "bg-pink-500 text-white"
+                        : "bg-white text-pink-500 border-pink-500"
+                    }`}
+                  >
+                    {page}
+                  </button>
+                )
+              )}
+            </div>
+          </div>
         </div>
       </div>
 
@@ -122,8 +157,9 @@ function AddModal({ onClose, onAdd }) {
       >
         <h2 className="text-xl font-bold mb-4">Add New Customer</h2>
         <form onSubmit={handleSubmit}>
-          {["customer_name", "company", "order_value", "order_date"].map(
-            (field) => (
+          {"customer_name,company,order_value,order_date"
+            .split(",")
+            .map((field) => (
               <div className="mb-4" key={field}>
                 <label className="block text-sm font-medium text-gray-700 capitalize">
                   {field.replace("_", " ")}
@@ -137,8 +173,7 @@ function AddModal({ onClose, onAdd }) {
                   required
                 />
               </div>
-            )
-          )}
+            ))}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Status

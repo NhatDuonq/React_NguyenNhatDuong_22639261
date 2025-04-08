@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 export default function MenuBar() {
   return (
-    <div className="w-80 bg-white p-4">
+    <div className="w-80 bg-white p-4 shadow-md">
       <img src="/img/Image 1858.png" alt="" className="pb-10" />
       <div>
         <NavLink to="/dashboard" className="text-lg font-bold">
@@ -13,7 +13,13 @@ export default function MenuBar() {
                 isActive ? "bg-pink-500" : "bg-white"
               }`}
             >
-              <img src="/img/Squares four 1.png" alt="" className="ml-5" />
+              <img
+                src={
+                  isActive ? "/img/dashboard.png" : "/img/Squares four 1.png"
+                }
+                alt="dashboard icon"
+                className="ml-5 h-6 w-6 object-contain"
+              />
               <span
                 className={`ml-5 ${isActive ? "text-white" : "text-black"}`}
               >
@@ -22,6 +28,7 @@ export default function MenuBar() {
             </div>
           )}
         </NavLink>
+
         <NavLink to="/projects" className="text-lg font-bold">
           {({ isActive }) => (
             <div

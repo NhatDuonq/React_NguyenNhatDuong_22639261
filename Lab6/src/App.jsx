@@ -7,6 +7,7 @@ import TeamPage from "./pages/TeamPage";
 import AnalyticPage from "./pages/AnalyticPage";
 import MessengerPage from "./pages/MessengerPage";
 import IntegrationPage from "./pages/IntegrationPage";
+import Header from "./components/Header";
 
 const path = {
   dashboard: "dashboard",
@@ -21,8 +22,11 @@ function RootLayout() {
   return (
     <div className="flex">
       <MenuBar />
-      <div className="flex-1 p-4">
-        <Outlet />
+      <div className="flex-1 flex flex-col">
+        <Header />
+        <div className="p-4 flex-1">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

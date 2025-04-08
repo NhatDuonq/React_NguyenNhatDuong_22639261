@@ -3,7 +3,7 @@ export default function OverviewCard({ data }) {
     <>
       {data.map((item) => (
         <div className="grid grid-cols-3 gap-10" key={item.id}>
-          <div className="bg-pink-50 h-40 w-110 rounded-lg grid grid-cols-2">
+          <div className="bg-pink-50 h-40 w-110 rounded-lg grid grid-cols-2 hover:translate-y-2 hover:shadow-xl hover:translate-x-2 transition-transform duration-300 ease-in-out">
             <div>
               <h1 className="font-bold mt-5 ml-5 mb-5 text-2xl">
                 {item.turnover.name}
@@ -23,7 +23,7 @@ export default function OverviewCard({ data }) {
               </button>
             </div>
           </div>
-          <div className="bg-blue-50 h-40 w-110 rounded-lg grid grid-cols-2">
+          <div className="bg-blue-50 h-40 w-110 rounded-lg grid grid-cols-2 hover:translate-y-2 hover:shadow-xl hover:translate-x-2 transition-transform duration-300 ease-in-out">
             <div>
               <h1 className="font-bold mt-5 ml-5 mb-5 text-2xl">
                 {item.profit.name}
@@ -43,7 +43,7 @@ export default function OverviewCard({ data }) {
               </button>
             </div>
           </div>
-          <div className="bg-blue-50 h-40 w-110 rounded-lg grid grid-cols-2">
+          <div className="bg-blue-50 h-40 w-110 rounded-lg grid grid-cols-2 hover:translate-y-2 hover:shadow-xl hover:translate-x-2 transition-transform duration-300 ease-in-out">
             <div>
               <h1 className="font-bold mt-5 ml-5 mb-5 text-2xl">
                 {item.newCustomer.name}

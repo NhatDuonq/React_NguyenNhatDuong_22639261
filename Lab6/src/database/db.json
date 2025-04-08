@@ -65,10 +65,46 @@
     },
     {
       "id": "f71f",
-      "customer_name": "Minh Huy",
-      "company": "THCS",
+      "customer_name": "HurryKng",
+      "company": "Geardnang",
       "order_value": "12",
       "order_date": "2025-04-04",
+      "status": "Completed",
+      "img_url": "https://i.pravatar.cc/100"
+    },
+    {
+      "id": "cd38",
+      "customer_name": "Lee Sun Jek",
+      "company": "FIFA Football",
+      "order_value": "10",
+      "order_date": "2025-04-04",
+      "status": "New",
+      "img_url": "https://i.pravatar.cc/100"
+    },
+    {
+      "id": "60aa",
+      "customer_name": "Song Jong Ky",
+      "company": "Koreane",
+      "order_value": "123",
+      "order_date": "2025-03-31",
+      "status": "In-progress",
+      "img_url": "https://i.pravatar.cc/100"
+    },
+    {
+      "id": "700a",
+      "customer_name": "Park Hang Seo",
+      "company": "USA",
+      "order_value": "892",
+      "order_date": "2025-04-10",
+      "status": "Completed",
+      "img_url": "https://i.pravatar.cc/100"
+    },
+    {
+      "id": "c3eb",
+      "customer_name": "Rock Lee",
+      "company": "Konoha",
+      "order_value": "17",
+      "order_date": "2025-04-19",
       "status": "Completed",
       "img_url": "https://i.pravatar.cc/100"
     }
