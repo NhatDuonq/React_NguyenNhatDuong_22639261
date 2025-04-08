@@ -9,7 +9,7 @@ export default function AdminPage() {
   const [dataTable, setDataTable] = useState([]);
 
   useEffect(() => {
-    fetch("https://67ed0d2a4387d9117bbc0752.mockapi.io/overview").then((res) =>
+    fetch("http://localhost:3000/overView").then((res) =>
       res.json().then((data) => setData(data))
     );
   }, []);
@@ -38,7 +38,7 @@ export default function AdminPage() {
           <div>
             <h2 className="text-lg font-semibold">Detail report</h2>
           </div>
-          <DataTable dataTable={dataTable} />
+          <DataTable dataTables={dataTable} />
         </div>
       </div>
     </>
