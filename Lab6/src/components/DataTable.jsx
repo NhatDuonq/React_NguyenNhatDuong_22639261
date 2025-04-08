@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function DataTable({ dataTables }) {
   const [dataTable, setDataTable] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(null);
 
   useEffect(() => {
     setDataTable(dataTables);
   }, [dataTables]);
 
-  const handleEdit = (item) => () => {
-    setSelectedItem(item);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedId, setSelectedId] = useState(null);
+
+  const handleEdit = (id) => () => {
+    setSelectedId(id);
     setIsModalOpen(true);
   };
 
   const handleCloseModal = () => {
     setIsModalOpen(false);
-    setSelectedItem(null);
+    setSelectedId(null);
   };
 
   const handleSave = (updatedItem) => {
@@ -53,7 +54,7 @@ export default function DataTable({ dataTables }) {
                   <img
                     src={item.img_url}
                     alt=""
-                    className=" w-10 h-10 rounded-full object-cover mr-10"
+                    className=" w-10 h-10 rounded-full object-cover mr-5"
                   />
                   {item.customer_name}
                 </td>
@@ -79,7 +80,7 @@ export default function DataTable({ dataTables }) {
                   <img
                     src="/img/create.png"
                     alt="Edit"
-                    onClick={handleEdit(item)}
+                    onClick={handleEdit(item.id)}
                     className="cursor-pointer w-5 h-5"
                   />
                 </td>
@@ -91,7 +92,7 @@ export default function DataTable({ dataTables }) {
 
       {isModalOpen && (
         <EditModal
-          item={selectedItem}
+          id={selectedId}
           onSave={handleSave}
           onClose={handleCloseModal}
         />
@@ -100,14 +101,18 @@ export default function DataTable({ dataTables }) {
   );
 }
 
-function EditModal({ item, onSave, onClose }) {
-  const [formData, setFormData] = useState({
-    customer_name: item.customer_name,
-    company: item.company,
-    order_value: item.order_value,
-    order_date: item.order_date,
-    status: item.status,
-  });
+function EditModal({ id, onSave, onClose }) {
+  const [formData, setFormData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch(`http://localhost:3000/customer/${id}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFormData(data);
+        setLoading(false);
+      });
+  }, [id]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -117,11 +122,25 @@ function EditModal({ item, onSave, onClose }) {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedItem = { ...item, ...formData };
-    onSave(updatedItem);
+
+    try {
+      await fetch(`http://localhost:3000/customer/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      onSave(formData);
+    } catch (err) {
+      console.error("Update failed:", err);
+    }
   };
+
+  if (loading) return null;
 
   return (
     <div
@@ -134,57 +153,25 @@ function EditModal({ item, onSave, onClose }) {
       >
         <h2 className="text-xl font-bold mb-4">
           Edit Customer{" "}
-          <span className="text-xl text-gray-400">(id: {item.id})</span>
+          <span className="text-xl text-gray-400">(id: {id})</span>
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Customer Name
-            </label>
-            <input
-              type="text"
-              name="customer_name"
-              value={formData.customer_name}
-              onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Company
-            </label>
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Order Value
-            </label>
-            <input
-              type="text"
-              name="order_value"
-              value={formData.order_value}
-              onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            />
-          </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700">
-              Order Date
-            </label>
-            <input
-              type="date"
-              name="order_date"
-              value={formData.order_date}
-              onChange={handleChange}
-              className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-            />
-          </div>
+          {["customer_name", "company", "order_value", "order_date"].map(
+            (field) => (
+              <div className="mb-4" key={field}>
+                <label className="block text-sm font-medium text-gray-700 capitalize">
+                  {field.replace("_", " ")}
+                </label>
+                <input
+                  type={field === "order_date" ? "date" : "text"}
+                  name={field}
+                  value={formData[field]}
+                  onChange={handleChange}
+                  className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                />
+              </div>
+            )
+          )}
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-700">
               Status

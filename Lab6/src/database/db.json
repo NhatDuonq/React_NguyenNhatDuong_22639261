@@ -2,20 +2,20 @@
   "customer": [
     {
       "id": "1",
-      "customer_name": "Elizabeth Lee",
-      "company": "AvatarSystem",
-      "order_value": 359,
+      "customer_name": "Christiano Ronaldo",
+      "company": "FIFA Football",
+      "order_value": "777",
       "order_date": "10/07/2023",
       "status": "New",
       "img_url": "/img/Avatar (1).png"
     },
     {
       "id": "2",
-      "customer_name": "Carlos Garcia",
-      "company": "SnoozeShift",
-      "order_value": 747,
+      "customer_name": "Lionel Messi",
+      "company": "FIFA Football",
+      "order_value": "10",
       "order_date": "24/07/2023",
-      "status": "New",
+      "status": "Completed",
       "img_url": "/img/Avatar (2).png"
     },
     {
