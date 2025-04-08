@@ -15,7 +15,7 @@ export default function AdminPage() {
   }, []);
 
   useEffect(() => {
-    fetch("https://67ed0d2a4387d9117bbc0752.mockapi.io/customer").then((res) =>
+    fetch("http://localhost:3000/customer").then((res) =>
       res.json().then((data) => setDataTable(data))
     );
   }, []);

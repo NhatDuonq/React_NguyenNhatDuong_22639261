@@ -1,30 +1,49 @@
-import "./App.css";
-import AdminPage from "./pages/AdminPage";
-import { Routes, Route } from "react-router-dom";
-import ProjectPage from "./pages/ProjectPage";
+import React from "react";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import MenuBar from "./components/MenuBar";
+import AdminPage from "./pages/AdminPage";
+import ProjectPage from "./pages/ProjectPage";
 import TeamPage from "./pages/TeamPage";
 import AnalyticPage from "./pages/AnalyticPage";
 import MessengerPage from "./pages/MessengerPage";
 import IntegrationPage from "./pages/IntegrationPage";
 
-function App() {
+const path = {
+  dashboard: "dashboard",
+  projects: "projects",
+  teams: "teams",
+  analytics: "analytics",
+  messengers: "messengers",
+  integrations: "integrations",
+};
+
+function RootLayout() {
   return (
-    <>
-      <div className="flex">
-        <MenuBar />
-        <Routes>
-          <Route path="/" element={<AdminPage />} />
-          <Route path="/dashboard" element={<AdminPage />} />
-          <Route path="/projects" element={<ProjectPage />} />
-          <Route path="/teams" element={<TeamPage />} />
-          <Route path="/analytics" element={<AnalyticPage />} />
-          <Route path="/messengers" element={<MessengerPage />} />
-          <Route path="/integrations" element={<IntegrationPage />} />
-        </Routes>
+    <div className="flex">
+      <MenuBar />
+      <div className="flex-1 p-4">
+        <Outlet />
       </div>
-    </>
+    </div>
   );
 }
 
-export default App;
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <RootLayout />,
+    children: [
+      { index: true, element: <AdminPage /> },
+      { path: path.dashboard, element: <AdminPage /> },
+      { path: path.projects, element: <ProjectPage /> },
+      { path: path.teams, element: <TeamPage /> },
+      { path: path.analytics, element: <AnalyticPage /> },
+      { path: path.messengers, element: <MessengerPage /> },
+      { path: path.integrations, element: <IntegrationPage /> },
+    ],
+  },
+]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
