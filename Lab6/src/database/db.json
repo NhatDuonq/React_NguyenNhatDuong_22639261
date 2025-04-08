@@ -15,7 +15,7 @@
       "company": "FIFA Football",
       "order_value": "10",
       "order_date": "24/07/2023",
-      "status": "Completed",
+      "status": "New",
       "img_url": "/img/Avatar (2).png"
     },
     {
@@ -53,6 +53,24 @@
       "order_date": "10/06/2023",
       "status": "Completed",
       "img_url": "/img/Avatar (6).png"
+    },
+    {
+      "id": "9cb8",
+      "customer_name": "Nhat Duong",
+      "company": "IUH",
+      "order_value": "668",
+      "order_date": "2025-04-08",
+      "status": "New",
+      "img_url": "https://i.pravatar.cc/100"
+    },
+    {
+      "id": "f71f",
+      "customer_name": "Minh Huy",
+      "company": "THCS",
+      "order_value": "12",
+      "order_date": "2025-04-04",
+      "status": "Completed",
+      "img_url": "https://i.pravatar.cc/100"
     }
   ],
   "overView": [
